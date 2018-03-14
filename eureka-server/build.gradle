@@ -1,37 +1,25 @@
-
 buildscript {
-  ext {
-    springBootVersion = '1.4.0.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+	ext {
+		springBootVersion = '1.5.10.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
+	}
 }
 
-apply plugin: 'spring-boot'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot' 
 
 dependencyManagement {
-    imports {
-      mavenBom 'org.springframework.cloud:spring-cloud-starter-parent:Brixton.SR4'
-    }
+  imports {
+    mavenBom ':spring-cloud-dependencies:Edgware.SR2'
+  }
 }
 
 dependencies {
-  compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
-}
-
-test {
-    forkEvery 1
-}
-
-repositories {
-    mavenCentral()
-    maven { url 'http://repo.spring.io/milestone' }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.11'
+    compile ':spring-cloud-starter-config'
+    compile ':spring-cloud-starter-eureka'
 }
