@@ -61,10 +61,10 @@ Vagrant.configure(2) do |config|
 
   SHELL
 
-  config.vm.provision "shell", path: "install_docker.sh"
 
-
-  config.vm.provision "shell", path: "install_gradle.sh"
+  #run external shell provision files
+  config.vm.provision "shell", path: "vagrant/install_docker.sh"
+  config.vm.provision "shell", path: "vagrant/install_gradle.sh"
 
 
 
